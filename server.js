@@ -39,7 +39,7 @@ app.post('/whatsapp', (req, res) => {
             // Send promocode back to the user
             client.messages.create({
                 from: 'whatsapp:+917558685025', // Your Twilio WhatsApp number
-                to: `whatsapp:${from}`,
+                to: from,
                 body: `Congratulations! Your promocode is: ${promocode}`
             }).then(message => console.log(message.sid))
             .catch(error => console.error(error));
