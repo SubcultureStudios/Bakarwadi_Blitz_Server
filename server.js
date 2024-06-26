@@ -2,14 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const twilio = require('twilio');
 const fs = require('fs');
+require('dotenv').config()
 
 const app = express();
 const port = process.env.PORT || 80;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const accountSid = 'AC3330848e3db4902f09a9201a2e06d89c'; // Twilio Account SID
-const authToken = '93fb5e2ae9af8fa123ba1bc76e1875e6'; // Twilio Auth Token
+const accountSid = process.env.SID; // Twilio Account SID
+const authToken = process.env.TOKEN; // Twilio Auth Token
 const client = twilio(accountSid, authToken);
 
 // Load promocodes from file or database
@@ -37,8 +38,8 @@ app.post('/whatsapp', (req, res) => {
 
             // Send promocode back to the user
             client.messages.create({
-                from: 'whatsapp:+14155238886', // Your Twilio WhatsApp number
-                to: from,
+                from: 'whatsapp:+917558685025', // Your Twilio WhatsApp number
+                to: `whatsapp:${from}`,
                 body: `Congratulations! Your promocode is: ${promocode}`
             }).then(message => console.log(message.sid))
             .catch(error => console.error(error));
