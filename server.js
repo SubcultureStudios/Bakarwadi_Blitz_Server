@@ -50,8 +50,6 @@ app.post('/whatsapp', (req, res) => {
     } else {
         res.status(200).send('Invalid command');
     }
-
-    res.send("Request received")
 });
 
 app.listen(port, () => {
