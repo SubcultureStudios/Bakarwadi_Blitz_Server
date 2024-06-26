@@ -9,7 +9,7 @@ const port = process.env.PORT || 80;
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const accountSid = 'AC3330848e3db4902f09a9201a2e06d89c'; // Twilio Account SID
-const authToken = '015806446d3cacb780daa2fc00a68bd0'; // Twilio Auth Token
+const authToken = '93fb5e2ae9af8fa123ba1bc76e1875e6'; // Twilio Auth Token
 const client = twilio(accountSid, authToken);
 
 // Load promocodes from file or database
