@@ -28,26 +28,26 @@ app.post('/whatsapp', (req, res) => {
     console.log(from, body)
 
     // Assuming the message contains a predefined command or score check
-    if (body.toLowerCase().includes('get promocode')) {
-        if (promocodes.length > 0) {
+    if (body.toLowerCase().includes('hi')) {
+        // if (promocodes.length > 0) {
             // Get and remove the first promocode from the list
-            const promocode = promocodes.shift();
+            // const promocode = promocodes.shift();
 
             // Save the remaining promocodes
-            fs.writeFileSync('promocodes.json', JSON.stringify(promocodes));
+            // fs.writeFileSync('promocodes.json', JSON.stringify(promocodes));
 
             // Send promocode back to the user
             client.messages.create({
                 from: 'whatsapp:+917558685025', // Your Twilio WhatsApp number
                 to: from,
-                body: `Congratulations! Your promocode is: ${promocode}`
+                body: `Visit our booth to claim your Special Prize!`
             }).then(message => console.log(message.sid))
             .catch(error => console.error(error));
 
-            res.status(200).send('Promocode sent');
-        } else {
-            res.status(200).send('No more promocodes available');
-        }
+            res.status(200).send('Message Sent');
+        // } else {
+        //     res.status(200).send('No more promocodes available');
+        // }
     } else {
         res.status(200).send('Invalid command');
     }
